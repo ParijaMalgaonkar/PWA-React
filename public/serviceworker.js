@@ -13,16 +13,35 @@ self.addEventListener('install', (event) => {
                 return cache.addAll(cachedURLS);
             })
     )
-})
+});
 
 
 //Listening for requests
 self.addEventListener('fetch', (event) => {
+    event.respondWith(
+        caches.match(event.request)
+            .then(() => {
+                return fetch(event.request)
+                    .catch(() => caches.match('offlinePage.html'))
+            })
+    )
     
-})
+});
 
 
 //Activating the Service Worker
 self.addEventListener('activate', (event) => {
+    const cacheWhiteList = [];
+    cacheWhiteList.push(cacheName);
+
+    event.waitUntil(
+        caches.keys(),then((cacheNames) => Promise.All(
+            cacheNames.map((cacheName) => {
+                if(!cacheWhiteList.includes(cacheName)) {
+                    return caches.delete(cacheName);
+                }
+            })
+        ))
+    )
     
-})
+});
