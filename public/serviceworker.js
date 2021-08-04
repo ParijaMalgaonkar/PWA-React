@@ -35,7 +35,7 @@ self.addEventListener('activate', (event) => {
     cacheWhiteList.push(cacheName);
 
     event.waitUntil(
-        caches.keys(),then((cacheNames) => Promise.All(
+        caches.keys().then((cacheNames) => Promise.All(
             cacheNames.map((cacheName) => {
                 if(!cacheWhiteList.includes(cacheName)) {
                     return caches.delete(cacheName);
