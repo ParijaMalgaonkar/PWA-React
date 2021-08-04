@@ -25,7 +25,9 @@ export default function App() {
                     <div className="city-temp">
                         {Math.round(weather.main.temp)}
                         <sup>&deg;</sup>
-
+                    </div>
+                    <div className="info">
+                        <p>{weather.weather[0].description}</p>
                     </div>
 
                 </div>
