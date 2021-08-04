@@ -15,7 +15,7 @@ export default function App() {
     
     return (
         <div className="main-container">
-            <input type="text" className="search" placeholder="Search" value={query} onChange={(e) => setQuery(e.target.value)} onKeyPress={search} />
+            <input type="text" className="search" value={query} onChange={(e) => setQuery(e.target.value)} onKeyPress={search} />
             {weather.main && (
                 <div className="city">
                     <h2 className="city-name">
@@ -29,7 +29,6 @@ export default function App() {
                     <div className="info">
                         <p>{weather.weather[0].description}</p>
                     </div>
-
                 </div>
 
             )}
